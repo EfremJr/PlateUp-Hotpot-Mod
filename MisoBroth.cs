@@ -92,13 +92,13 @@ namespace HotpotMod
     {
         public override string UniqueNameID => "CookedMisoBroth";
 
-        public override ItemStorage ItemStorageFlags => ItemStorage.Dish;
+        public override ItemStorage ItemStorageFlags => ItemStorage.None;
 
         public override int SplitCount => 4;
 
         public override Item DisposesTo => (Item)GDOUtils.GetExistingGDO(ItemReferences.Pot);
 
-        //public override Item SplitSubItem => (Item)GDOUtils.GetCustomGameDataObject<MisoServingPot>().GameDataObject;
+        public override Item SplitSubItem => (Item)GDOUtils.GetCustomGameDataObject<MisoBrothPortion>().GameDataObject;
 
         public override GameObject Prefab => null;
 
@@ -122,6 +122,14 @@ namespace HotpotMod
             gameDataObject.Prefab = clonedPot;
         }
     }
+    public class MisoBrothPortion : CustomItem
+    {
+        public override string UniqueNameID => "MisoBrothPortion";
+        public override ItemStorage ItemStorageFlags => ItemStorage.Small;
+        public override GameObject Prefab => null;
+        //set up model and texture later
+    }
+
 }
 
 
