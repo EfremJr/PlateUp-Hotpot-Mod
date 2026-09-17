@@ -13,7 +13,36 @@ namespace HotpotMod
     {
         public override string UniqueNameID => "ServingPot";
         public override ItemStorage ItemStorageFlags => ItemStorage.None;
-        //public override Applicance DedicatedProvider => ???;
+        public override Appliance DedicatedProvider => (Appliance)GDOUtils.GetCustomGameDataObject<ServingPotRack>().GameDataObject;
+        public override GameObject Prefab => null;
+    }
+    
+    public class ServingPotRack : CustomAppliance
+    {
+        public override string UniqueNameID => "ServingPotRack";
+        public override bool IsPurchasable => true;
+        public override ShoppingTags ShoppingTags => ShoppingTags.None;
+        public override PriceTier PriceTier => PriceTier.Cheap;
+        public override bool SellOnlyAsDuplicate => true;
+        public override List<IApplianceProperty> Properties => new List<IApplianceProperty>
+        {
+            new CItemProvider
+            {
+                ProvidedItem = GDOUtils.GetCustomGameDataObject<ServingPot>().ID
+            }    
+        };
+        public override List<(Locale, ApplianceInfo)> InfoList => new List<(Locale, ApplianceInfo)>
+        {
+            (
+                Locale.English,
+                new ApplianceInfo
+                {
+                    Name = "Serving Pot Rack", 
+                    Description = "Provides Serving Pots"
+                }
+            )
+        };
+
         public override GameObject Prefab => null;
     }
 

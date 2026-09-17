@@ -15,13 +15,25 @@ namespace HotpotMod
 
         public override ItemCategory ItemCategory => ItemCategory.Generic;
         public override ItemStorage ItemStorageFlags => ItemStorage.Small;
-        //public override Appliance DedicatedProvider => ???
+        public override Appliance DedicatedProvider => (Appliance)GDOUtils.GetCustomGameDataObject<MisoPacketShelf>().GameDataObject;
         public override GameObject Prefab => null;
     }
 
     public class MisoPacketShelf : CustomAppliance
     {
         public override string UniqueNameID => "MisoPacketShelf";
+
+        public override bool IsPurchasable => true;
+        public override ShoppingTags ShoppingTags => ShoppingTags.None;
+        public override PriceTier PriceTier => PriceTier.Cheap;
+        public override bool SellOnlyAsDuplicate => true;
+        public override List<IApplianceProperty> Properties => new List<IApplianceProperty>
+        {
+            new CItemProvider
+            {
+                ProvidedItem = GDOUtils.GetCustomGameDataObject<MisoPacket>().ID
+            }    
+        };
         public override List<(Locale, ApplianceInfo)> InfoList => new List<(Locale, ApplianceInfo)>
         {
             (
@@ -33,12 +45,17 @@ namespace HotpotMod
                 }
             )
         };
+
+        public override GameObject Prefab => null;
     }
 
 
     public class UncookedMisoBroth : CustomItemGroup
     {
         public override string UniqueNameID => "UncookedMisoBroth";
+        public override ItemStorage ItemStorageFlags => ItemStorage.None;
+
+        public override Item DisposesTo => (Item)GDOUtils.GetExistingGDO(ItemReferences.Pot);
 
         public override List<ItemGroup.ItemSet> Sets => new List<ItemGroup.ItemSet>
         {
