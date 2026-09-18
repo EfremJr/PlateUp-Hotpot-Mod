@@ -18,6 +18,17 @@ namespace HotpotMod
 
         public override List<ItemGroup.ItemSet> Sets => new List<ItemGroup.ItemSet>
         {
+            //board
+            new ItemGroup.ItemSet
+            {
+                Max = 1,
+                Min = 1,
+                IsMandatory = true,
+                Items = new List<Item>
+                {
+                    (Item)GDOUtils.GetExistingGDO(ItemReferences.ServingBoard)
+                }
+            },
             //Meat
             new ItemGroup.ItemSet
             {
