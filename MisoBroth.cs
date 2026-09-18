@@ -59,18 +59,36 @@ namespace HotpotMod
 
         public override List<ItemGroup.ItemSet> Sets => new List<ItemGroup.ItemSet>
         {
-          new ItemGroup.ItemSet
-          {
-              Max = 3,
-              Min = 3,
-              IsMandatory = true,
-              Items = new List<Item>
-              {
-                  (Item)GDOUtils.GetExistingGDO(ItemReferences.Water),
-                  (Item)GDOUtils.GetExistingGDO(ItemReferences.Pot),
-                  (Item)GDOUtils.GetCustomGameDataObject<MisoPacket>().GameDataObject
-              }
-          }  
+            new ItemGroup.ItemSet
+            {
+                Max = 1,
+                Min = 1,
+                IsMandatory = true,
+                Items = new List<Item>
+                {
+                  (Item)GDOUtils.GetExistingGDO(ItemReferences.Pot)
+                }
+            },
+            new ItemGroup.ItemSet
+            {
+                Max = 1,
+                Min = 1,
+                IsMandatory = true,
+                Items = new List<Item>
+                {
+                  (Item)GDOUtils.GetExistingGDO(ItemReferences.Water)
+                }
+            },
+            new ItemGroup.ItemSet
+            {
+                Max = 1,
+                Min = 1,
+                IsMandatory = true,
+                Items = new List<Item>
+                {
+                    (Item)GDOUtils.GetCustomGameDataObject<MisoPacket>().GameDataObject
+                }
+            }  
         };
 
         public override List<Item.ItemProcess> Processes => new List<Item.ItemProcess>

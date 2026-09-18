@@ -71,12 +71,12 @@ namespace HotpotMod
             new ItemGroup.ItemSet
             {
                 Max = 2,
-                Min = 1,
+                Min = 2,
                 IsMandatory = true,
                 Items = new List<Item>
                 {
                     (Item)GDOUtils.GetCustomGameDataObject<MisoBrothPortion>().GameDataObject
-                    //add new broth
+                    //add new broths
                 }
             }
         };
